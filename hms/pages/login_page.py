@@ -1,7 +1,7 @@
 import logging
 
 from hms.pages.base_page import Base_Page
-from hms.pages.locators import Login_Page_Locators
+from hms.pages.locators import Login_Page_Locators, Main_Page_Locators
 from hms.utilities.custom_logger import customLogger
 from hms.utilities.file_reader import File_Reader
 
@@ -38,3 +38,8 @@ class Login_Page(Base_Page):
 
     def clickLoginButton(self):
         self.elementClick(Login_Page_Locators.LOGIN_BUTTON, "name")
+
+    def verify_that_logged_in(self):
+        self.assertTrue(self.isElementPresent(Main_Page_Locators.ACTIVE_CLASS, "xpath"),
+                        "We are not on the expected page")
+        self.assertTrue(self.isElementPresent(Main_Page_Locators.ACTIVE_CLASS_CONTAINS, "xpath"))

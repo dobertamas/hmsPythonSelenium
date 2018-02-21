@@ -12,7 +12,7 @@ This is a proof of concept (POC) project, to show how Python's object-oriented f
 to create a test framework, along with Selenium, about HMS Admin console.
 
 The implementation drives to provide a Page Object Model structure.
-For this a base page is being provided from which some general functions are being inherited,
+For this, a base page is being provided from which some general functions are being inherited,
 for example the start and open methods.
 Beside those, a couple of Selenium-related methods are there in the base class, to enable getting
 webElements by type, to send keys, to click on webElements and so on.

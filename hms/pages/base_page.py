@@ -10,6 +10,10 @@ from selenium.webdriver.support.wait import WebDriverWait
 
 from hms.utilities.custom_logger import customLogger
 
+""" 
+    This class is serving basic attributes/functions for every single page inherited from it.
+    """
+
 
 class Base_Page(unittest.TestCase):
     log = customLogger(logging.DEBUG)
@@ -23,21 +27,22 @@ class Base_Page(unittest.TestCase):
     """ 
     Overwrite this method in your Page module to visit a specific URL 
     """
+
     def start(self):
         pass
-
 
     """ 
     Provide a relative URL for this method in your Page module 
     """
+
     def open(self, url):
         url = self.base_url + url
         self.driver.get(url)
 
-
     """ 
     Webdriver-related methods to be used in Page modules 
     """
+
     def getElement(self, locator, locatorType):
         element = None
         try:
@@ -76,13 +81,13 @@ class Base_Page(unittest.TestCase):
             self.log.debug("Sent data on element with locator: " + locator + " locatorType: " + locatorType)
         except:
             self.log.debug("Cannot send data on the element with locator: " + locator +
-                          " locatorType: " + locatorType)
+                           " locatorType: " + locatorType)
             print_stack()
 
     def elementClick(self, locator, locatorType="name"):
         try:
             element = self.getElement(locator, locatorType)
-            time.sleep(3)
+            #time.sleep(3)
             element.click()
             self.log.debug("Clicked on element with locator: " + locator + " locatorType: " + locatorType)
         except:
@@ -109,7 +114,7 @@ class Base_Page(unittest.TestCase):
         try:
             byType = self.getByType(locatorType)
             self.log.debug("Waiting for maximum :: " + str(timeout) +
-                          " :: seconds for element to be clickable")
+                           " :: seconds for element to be clickable")
             wait = WebDriverWait(self.driver, timeout, poll_frequency=pollFrequency,
                                  ignored_exceptions=[NoSuchElementException,
                                                      ElementNotVisibleException,

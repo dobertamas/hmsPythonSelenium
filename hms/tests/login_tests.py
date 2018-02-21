@@ -1,4 +1,5 @@
 import logging
+import time
 import unittest
 
 from hms.pages.driver_factory import Driver_Factory
@@ -32,3 +33,7 @@ class Login_Tests(unittest.TestCase):
         else:
             msg = "Login failed"
             login_object.log.info(msg)
+
+        time.sleep(3)
+        login_object.verify_that_logged_in()
+

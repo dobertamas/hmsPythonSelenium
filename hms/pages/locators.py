@@ -6,4 +6,5 @@ class Login_Page_Locators():
 
 
 class Main_Page_Locators():
-    pass
+    ACTIVE_CLASS = '//li[@class="active"]'
+    ACTIVE_CLASS_CONTAINS = "//li[contains(text(),'Global Preferences')]"
