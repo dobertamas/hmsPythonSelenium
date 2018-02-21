@@ -1,6 +1,8 @@
 
-SETUP
-=====
+USED PACKAGES
+=============
+
+The project uses logging, inspect, traceback, time, unittest and selenium packages.
 
 
 ABOUT THE CODE
@@ -16,14 +18,38 @@ Beside those, a couple of Selenium-related methods are there in the base class, 
 webElements by type, to send keys, to click on webElements and so on.
 
 Another important aspect of the Page Object Model is how to get and how to pass around the webdriver.
-In our case it is obtained in the Driver_Factory class. Later on it is the actual test, which is calling it,
-creating a driver object.
+In our case it is obtained in the Driver_Factory class. Then the actual test calls it,
+thus creating a driver object.
 The next step using the Page_Factory class, which is simply creating different 'pages' (actually page objects)
-based on the name of the page.
-After this, the test can call methods on that page - like calling the login() method on the login page object.
+based on the name of the page. (In the future when new pages are being added, the Page_Factory should
+also be updated.)
+After creating the page, the test can call methods on that page - like calling the login() method
+on the login page object.
 
 
+ABOUT WHERE TO VERIFY TESTS
+===========================
 
- The browser type is determined by supplying short name like 'chrome' or 'ff' or 'firefox'.
-    The tests call the Driver_Factory class. Currently only local drivers are available.
-    After obtaining a driver object, we call the Page_Factory class, which return a required page object.
+There is a certain debate whether the page objects ot the actual tests should hold code,
+checking the outcome of the actions by webdriver.
+Both approaches work but the emphasis is being put in different places.
+If the assertions are in the page objects, the actual test would become considerably shorter -
+but the price for that is the QA folks, reading only the test, are somewhat in dark, what exactly happened,
+meaning they have to dig deeper into the code - which contradict to the idea of the framework,
+where the coder does not need to know about the inner workings of the framework.
+The advantage of this approach is that the code super short, like:
+
+login_object.verify_login()
+
+On the other hand, when the verification resides inside the test, the code might be much longer. Example:
+       if (login_object.login()):
+            msg = "Login was successful"
+            login_object.log.info(msg)
+        else:
+            msg = "Login failed"
+            login_object.log.info(msg)
+In this case the output after running the test could provide a clearer picture.
+
+All in all I just wanted to bring up this so that we would debate about which approach we prefer.
+
+

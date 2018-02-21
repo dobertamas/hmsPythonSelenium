@@ -72,7 +72,6 @@ class Base_Page(unittest.TestCase):
             time.sleep(4)
             element.click()
             self.log.info("Clicked on element with locator: " + locator + " locatorType: " + locatorType)
-            print(" clicked ")
         except:
             self.log.info("Cannot click on the element with locator: " + locator + " locatorType: " + locatorType)
             print(" could not click ")

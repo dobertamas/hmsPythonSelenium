@@ -14,8 +14,6 @@ class Page_Factory():
         elif page_name == "main":
             test_page_object = Main_Page(driver, base_url=base_url)
 
-        print("page_object in factory")
-
         return test_page_object
 
-    get_page_object = staticmethod(get_page_object)
+    # get_page_object = staticmethod(get_page_object)
