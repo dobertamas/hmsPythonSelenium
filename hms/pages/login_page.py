@@ -1,7 +1,7 @@
 import logging
 
 from hms.pages.base_page import Base_Page
-from hms.pages.locators import Locators
+from hms.pages.locators import Login_Page_Locators
 from hms.utilities.custom_logger import customLogger
 from hms.utilities.file_reader import File_Reader
 
@@ -18,11 +18,9 @@ class Login_Page(Base_Page):
     def login(self, username="", password=""):
         file_reader = File_Reader()
         username = file_reader.get_username()
-        print(username)
         self.enter_username(username)
         file_reader = File_Reader()
         password = file_reader.get_password()
-        print(password)
         self.enterPassword(password)
         self.clickLoginButton()
         if 'HMS: Global Prefs' in self.driver.title:
@@ -33,10 +31,10 @@ class Login_Page(Base_Page):
             return False
 
     def enter_username(self, username):
-        self.sendKeys(username, Locators._username_field, "name")
+        self.sendKeys(username, Login_Page_Locators.USERNAME_FIELD, "name")
 
     def enterPassword(self, password):
-        self.sendKeys(password, Locators._password_field, "name")
+        self.sendKeys(password, Login_Page_Locators.PASSWORD_FIELD, "name")
 
     def clickLoginButton(self):
-        self.elementClick(Locators._login_button, "name")
+        self.elementClick(Login_Page_Locators.LOGIN_BUTTON, "name")

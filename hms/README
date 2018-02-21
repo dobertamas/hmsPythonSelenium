@@ -36,6 +36,13 @@ Regarding log levels: in general the methods in the base class will log events i
 and the tests will use info level.
 
 
+SENSITIVE_DATA
+==============
+
+The username/password is being stored in the hms/tests/test_data.txt file. Please do NOT commit it!
+It is being read in the Login_Page class, utilizing the hms/utilities/file_reader.py Python file.
+
+
 ABOUT WHERE TO VERIFY TESTS
 ===========================
 
