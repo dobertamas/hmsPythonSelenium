@@ -4,7 +4,6 @@ USED PACKAGES
 
 The project uses logging, inspect, traceback, time, unittest and selenium packages.
 
-
 ABOUT THE CODE
 ==============
 
@@ -26,6 +25,10 @@ also be updated.)
 After creating the page, the test can call methods on that page - like calling the login() method
 on the login page object.
 
+LOCATORS
+========
+
+All locators are suggested to have inside hms/pages/locators.py, by their related class for easier maintenance.
 
 LOGGING
 =======
@@ -35,13 +38,11 @@ to see the info and debug messages.
 Regarding log levels: in general the methods in the base class will log events in debug mode
 and the tests will use info level.
 
-
 SENSITIVE_DATA
 ==============
 
 The username/password is being stored in the hms/tests/test_data.txt file. Please do NOT commit it!
 It is being read in the Login_Page class, utilizing the hms/utilities/file_reader.py Python file.
-
 
 ABOUT WHERE TO VERIFY TESTS
 ===========================
