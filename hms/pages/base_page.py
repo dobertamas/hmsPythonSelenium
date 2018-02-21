@@ -18,23 +18,12 @@ class Base_Page(unittest.TestCase):
             self.start()
 
     def start(self):
-        "Overwrite this method in your Page module if you want to visit a specific URL"
+        """ Overwrite this method in your Page module to visit a specific URL """
         pass
 
     def open(self, url):
-        "Visit the page base_url + url"
         url = self.base_url + url
         self.driver.get(url)
-
-    def sendKeys(self, data, locator, locatorType="name"):
-        try:
-            element = self.getElement(locator, locatorType)
-            element.send_keys(data)
-            self.log.info("Sent data on element with locator: " + locator + " locatorType: " + locatorType)
-        except:
-            self.log.info("Cannot send data on the element with locator: " + locator +
-                          " locatorType: " + locatorType)
-            print_stack()
 
     def getElement(self, locator, locatorType):
         element = None
@@ -66,6 +55,16 @@ class Base_Page(unittest.TestCase):
         else:
             self.log.info("Locator type " + locatorType + " not correct/supported")
         return False
+
+    def sendKeys(self, data, locator, locatorType="name"):
+        try:
+            element = self.getElement(locator, locatorType)
+            element.send_keys(data)
+            self.log.info("Sent data on element with locator: " + locator + " locatorType: " + locatorType)
+        except:
+            self.log.info("Cannot send data on the element with locator: " + locator +
+                          " locatorType: " + locatorType)
+            print_stack()
 
     def elementClick(self, locator, locatorType="name"):
         try:

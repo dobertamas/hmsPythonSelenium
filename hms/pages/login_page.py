@@ -1,6 +1,5 @@
 import logging
 
-from hms.pages import locators
 from hms.pages.base_page import Base_Page
 from hms.pages.locators import Locators
 from hms.utilities.custom_logger import customLogger
@@ -8,10 +7,6 @@ from hms.utilities.custom_logger import customLogger
 
 class Login_Page(Base_Page):
     log = customLogger(logging.DEBUG)
-
-    _username_field = "username"
-    _password_field = "password"
-    _login_button = "signin"
 
     def start(self):
         self.url = '/config/list'
