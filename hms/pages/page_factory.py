@@ -3,6 +3,7 @@ from hms.pages.main_page import Main_Page
 
 
 class Page_Factory():
+    """ Returns the appropriate page object based on the name of the page """
 
     def get_page_object(page_name, driver, base_url='http://localhost:8084/console/'):
         "Return the appropriate page object based on page_name"
