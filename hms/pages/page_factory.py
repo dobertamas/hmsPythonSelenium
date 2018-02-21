@@ -6,7 +6,8 @@ class Page_Factory():
     """ Returns the appropriate page object based on the name of the page """
 
     def get_page_object(page_name, driver, base_url='http://localhost:8084/console/'):
-        "Return the appropriate page object based on page_name"
+        """Return the appropriate page object based on page_name"""
+
         test_page_object = None
         page_name = page_name.lower()
         if page_name == "login":
@@ -16,4 +17,3 @@ class Page_Factory():
 
         return test_page_object
 
-    # get_page_object = staticmethod(get_page_object)

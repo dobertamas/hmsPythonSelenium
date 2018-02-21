@@ -3,6 +3,7 @@ import logging
 from hms.pages.base_page import Base_Page
 from hms.pages.locators import Locators
 from hms.utilities.custom_logger import customLogger
+from hms.utilities.file_reader import File_Reader
 
 
 class Login_Page(Base_Page):
@@ -11,20 +12,24 @@ class Login_Page(Base_Page):
     def start(self):
         self.url = '/config/list'
         self.open(self.url)
-        self.log.info(" starting the login page ")
+        self.log.info("Starting the login page ")
         self.assertIn("HMS", self.driver.title)
 
-    def login(self, username="admin", password="admin"):
-
+    def login(self, username="", password=""):
+        file_reader = File_Reader()
+        username = file_reader.get_username()
+        print(username)
         self.enter_username(username)
+        file_reader = File_Reader()
+        password = file_reader.get_password()
+        print(password)
         self.enterPassword(password)
-        # time.sleep(30)
         self.clickLoginButton()
         if 'HMS: Global Prefs' in self.driver.title:
-            self.log.info(" successful login ")
+            self.log.debug("Successful login ")
             return True
         else:
-            self.log.info(" login failed ")
+            self.log.debug("Login failed ")
             return False
 
     def enter_username(self, username):

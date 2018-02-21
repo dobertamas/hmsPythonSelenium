@@ -27,6 +27,15 @@ After creating the page, the test can call methods on that page - like calling t
 on the login page object.
 
 
+LOGGING
+=======
+
+For logging a custom logging class is being used. You might want to monitor the hms/tests/automation.log file
+to see the info and debug messages.
+Regarding log levels: in general the methods in the base class will log events in debug mode
+and the tests will use info level.
+
+
 ABOUT WHERE TO VERIFY TESTS
 ===========================
 
