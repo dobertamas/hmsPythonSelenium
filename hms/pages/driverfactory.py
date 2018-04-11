@@ -1,7 +1,7 @@
 from selenium import webdriver
 
 
-class Driver_Factory():
+class DriverFactory():
 
     def __init__(self, browser='ff', browser_version=None, os_name=None):
         self.browser = browser

@@ -1,4 +1,4 @@
-class File_Reader():
+class FileReader():
 
     def get_username(self):
         my_file = open("test_data.txt", "r")

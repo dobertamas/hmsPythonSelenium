@@ -1,5 +1,4 @@
 import logging
-import time
 import unittest
 from traceback import print_stack
 
@@ -15,10 +14,11 @@ from hms.utilities.custom_logger import customLogger
     """
 
 
-class Base_Page(unittest.TestCase):
+class BasePage(unittest.TestCase):
     log = customLogger(logging.DEBUG)
 
     def __init__(self, selenium_driver, base_url='http://localhost:8084/console'):
+        super().__init__()
         self.base_url = base_url
         self.driver = selenium_driver
         if self.driver is not None:

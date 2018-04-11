@@ -2,12 +2,12 @@ import logging
 import time
 import unittest
 
-from hms.pages.driver_factory import Driver_Factory
-from hms.pages.page_factory import Page_Factory
+from hms.pages.driverfactory import DriverFactory
+from hms.pages.pagefactory import PageFactory
 from hms.utilities.custom_logger import customLogger
 
 
-class Login_Tests(unittest.TestCase):
+class LoginTests(unittest.TestCase):
     """
     Tests positive and negative scenarios for the login feature.
     Verifications are about checking the title after login.
@@ -21,11 +21,11 @@ class Login_Tests(unittest.TestCase):
         """
         Tests login feature. Providing valid username and password enables user to log in.
         """
-        driver_object = Driver_Factory()
+        driver_object = DriverFactory()
         driver = driver_object.get_web_driver("ff")
         # driver.maximize_window()
 
-        login_object = Page_Factory.get_page_object("login", driver)
+        login_object = PageFactory.get_page_object("login", driver)
 
         if (login_object.login()):
             msg = "Login was successful"

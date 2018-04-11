@@ -5,6 +5,6 @@ class Login_Page_Locators():
     LOGIN_BUTTON = "signin"
 
 
-class Main_Page_Locators():
+class MainPageLocators():
     ACTIVE_CLASS = '//li[@class="active"]'
     ACTIVE_CLASS_CONTAINS = "//li[contains(text(),'Global Preferences')]"
