@@ -68,9 +68,3 @@ On the other hand, when the verification resides inside the test, the code might
 In this case the output after running the test could provide a clearer picture.
 
 All in all I just wanted to bring up this so that we would debate about which approach we prefer.
-
-
-FURTHER TODO
-============
-
-Enable test run with Chrome browser.

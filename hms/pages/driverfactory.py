@@ -6,7 +6,7 @@ class DriverFactory:
     Class to create and return a Selenium webdriver.
 
     Attributes:
-        browser(str): The name of the browser. Currrently it can be firefox or ff
+        browser(str): The name of the browser. Currently it can be firefox or ff
     """
 
     def __init__(self, browser='ff', browser_version=None):
@@ -24,6 +24,7 @@ class DriverFactory:
             local_driver = webdriver.Firefox()
             print("")
         elif browser.lower() == "chrome":
+            # TODO set up chrome driver with webdriver
             # selenium.common.exceptions.SessionNotCreatedException: Message: Unable
             # to find a matching set of capabilities
             # cap = {'binary_location': '/opt/geckodriver'}
@@ -31,9 +32,11 @@ class DriverFactory:
             # local_driver = webdriver.Chrome(desired_capabilities=cap, executable_path='/opt/geckodriver')
             local_driver = webdriver.Chrome('/opt/geckodriver')
         elif browser.lower() == "opera":
+            # TODO maybe set up opera driver with webdriver
             # 'operadriver' executable needs to be in PATH
             local_driver = webdriver.Opera()
         elif browser.lower() == "safari":
+            # TODO set up safari driver with webdriver
             # AttributeError: 'WebDriver' object has no attribute 'service'
             local_driver = webdriver.Safari()
 
