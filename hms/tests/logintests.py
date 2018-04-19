@@ -4,7 +4,7 @@ import unittest
 
 from hms.pages.driverfactory import DriverFactory
 from hms.pages.pagefactory import PageFactory
-from hms.utilities.custom_logger import customLogger
+from hms.utilities.custom_logger import custom_logger
 
 
 class LoginTests(unittest.TestCase):
@@ -15,9 +15,10 @@ class LoginTests(unittest.TestCase):
     The tests call the Driver_Factory class. Currently only local drivers are available.
     After obtaining a driver object, we call the Page_Factory class, which return a required page object.
     """
-    log = customLogger(logging.DEBUG)
+    log = custom_logger(logging.DEBUG)
 
-    def test_happpy_path_login(self):
+    @staticmethod
+    def test_happpy_path_login():
         """
         Tests login feature. Providing valid username and password enables user to log in.
         """
@@ -27,7 +28,7 @@ class LoginTests(unittest.TestCase):
 
         login_object = PageFactory.get_page_object("login", driver)
 
-        if (login_object.login()):
+        if login_object.login():
             msg = "Login was successful"
             login_object.log.info(msg)
         else:
@@ -36,4 +37,3 @@ class LoginTests(unittest.TestCase):
 
         time.sleep(3)
         login_object.verify_that_logged_in()
-

@@ -1,13 +1,13 @@
 import logging
 
 from hms.pages.basepage import BasePage
-from hms.pages.locators import Login_Page_Locators, MainPageLocators
-from hms.utilities.custom_logger import customLogger
+from hms.pages.locators import LoginPageLocators, MainPageLocators
+from hms.utilities.custom_logger import custom_logger
 from hms.utilities.filereader import FileReader
 
 
 class LoginPage(BasePage):
-    log = customLogger(logging.DEBUG)
+    log = custom_logger(logging.DEBUG)
 
     """
     To avoid the following when debugging through PyCharm:
@@ -23,7 +23,7 @@ class LoginPage(BasePage):
         self.log.info("Starting the login page ")
         self.assertIn("HMS", self.driver.title)
 
-    def login(self, username="", password=""):
+    def login(self):
         file_reader = FileReader()
         username = file_reader.get_username()
         self.enter_username(username)
@@ -39,13 +39,13 @@ class LoginPage(BasePage):
             return False
 
     def enter_username(self, username):
-        self.sendKeys(username, Login_Page_Locators.USERNAME_FIELD, "name")
+        self.sendKeys(username, LoginPageLocators.USERNAME_FIELD, "name")
 
     def enterPassword(self, password):
-        self.sendKeys(password, Login_Page_Locators.PASSWORD_FIELD, "name")
+        self.sendKeys(password, LoginPageLocators.PASSWORD_FIELD, "name")
 
     def clickLoginButton(self):
-        self.elementClick(Login_Page_Locators.LOGIN_BUTTON, "name")
+        self.elementClick(LoginPageLocators.LOGIN_BUTTON, "name")
 
     def verify_that_logged_in(self):
         self.assertTrue(self.isElementPresent(MainPageLocators.ACTIVE_CLASS, "xpath"),

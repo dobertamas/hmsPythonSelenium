@@ -16,4 +16,3 @@ class PageFactory():
             test_page_object = MainPage(driver, base_url=base_url)
 
         return test_page_object
-

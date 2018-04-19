@@ -1,16 +1,18 @@
 from selenium import webdriver
 
 
-class DriverFactory():
+class DriverFactory:
 
-    def __init__(self, browser='ff', browser_version=None, os_name=None):
+    def __init__(self, browser='ff', browser_version=None):
+        self.browser_version = browser_version
         self.browser = browser
 
     def get_web_driver(self, browser):
         web_driver = self.run_local(browser)
         return web_driver
 
-    def run_local(self, browser):
+    @staticmethod
+    def run_local(browser):
         local_driver = None
         if browser.lower() == "ff" or browser.lower() == 'firefox':
             local_driver = webdriver.Firefox()
