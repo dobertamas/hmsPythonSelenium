@@ -7,7 +7,9 @@ class PageFactory:
 
     @staticmethod
     def get_page_object(page_name, driver, base_url='http://localhost:8084/console/'):
-        """Return the appropriate page object based on page_name"""
+        """Return the appropriate page object based on page_name
+        :rtype: BasePage
+        """
 
         test_page_object = None
         page_name = page_name.lower()
