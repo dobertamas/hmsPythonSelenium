@@ -13,7 +13,7 @@ class LoginTests(unittest.TestCase):
     Verifications are about checking the title after login.
     The browser type is determined by supplying short name like 'chrome' or 'ff' or 'firefox'.
     The tests call the Driver_Factory class. Currently only local drivers are available.
-    After obtaining a driver object, we call the Page_Factory class, which return a required page object.
+    After obtaining a driver object, we call the Page_Factory class, which returns a required page object.
     """
     log = custom_logger(logging.DEBUG)
 
