@@ -18,7 +18,7 @@ class LoginTests(unittest.TestCase):
     log = custom_logger(logging.DEBUG)
 
     @staticmethod
-    def test_happpy_path_login():
+    def test_happy_path_login():
         """
         Tests login feature. Providing valid username and password enables user to log in.
         """

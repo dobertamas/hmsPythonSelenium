@@ -2,9 +2,10 @@ from hms.pages.loginpage import LoginPage
 from hms.pages.mainpage import MainPage
 
 
-class PageFactory():
+class PageFactory:
     """ Returns the appropriate page object based on the name of the page """
 
+    @staticmethod
     def get_page_object(page_name, driver, base_url='http://localhost:8084/console/'):
         """Return the appropriate page object based on page_name"""
 

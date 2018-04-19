@@ -9,23 +9,30 @@ from selenium.webdriver.support.wait import WebDriverWait
 
 from hms.utilities.custom_logger import custom_logger
 
-""" 
-    This class is serving basic attributes/functions for every single page inherited from it.
-    """
-
 
 class BasePage(unittest.TestCase):
+    """
+    This class is serving basic attributes/functions for every single page inherited from it.
+    Attributes:
+        selenium_driver: allows you to drive the browser.
+        base_url: The HMS Admin Console base URL unless passed in differently
+    Methods:
+        start:
+
+
+    """
     log = custom_logger(logging.DEBUG)
 
     def __init__(self, selenium_driver, base_url='http://localhost:8084/console'):
         super().__init__()
-        self.base_url = base_url
-        self.driver = selenium_driver
-        if self.driver is not None:
+        self._base_url = base_url
+        self._driver = selenium_driver
+        if self._driver is not None:
             self.start()
 
     """ 
-    Overwrite this method in your Page module to visit a specific URL 
+    Overwrite this method in your Page module to visit the given page's URL.
+    Provide a relative URL there like '/config/list' 
     """
 
     def start(self):
@@ -36,8 +43,8 @@ class BasePage(unittest.TestCase):
     """
 
     def open(self, url):
-        url = self.base_url + url
-        self.driver.get(url)
+        url = self._base_url + url
+        self._driver.get(url)
 
     """ 
     Webdriver-related methods to be used in Page modules 
@@ -48,9 +55,9 @@ class BasePage(unittest.TestCase):
         try:
             locator_type = locator_type.lower()
             by_type = self.getByType(locator_type)
-            element = self.driver.find_element(by_type, locator)
+            element = self._driver.find_element(by_type, locator)
             self.log.debug("Element Found with locator: " + locator + " and  locatorType: " + locator_type)
-        except:
+        except NoSuchElementException:
             self.log.debug("Element not found with locator: " + locator + " and  locatorType: " + locator_type)
         return element
 
@@ -79,7 +86,7 @@ class BasePage(unittest.TestCase):
             element = self.getElement(locator, locator_type)
             element.send_keys(data)
             self.log.debug("Sent data on element with locator: " + locator + " locatorType: " + locator_type)
-        except:
+        except ElementNotVisibleException:
             self.log.debug("Cannot send data on the element with locator: " + locator +
                            " locatorType: " + locator_type)
             print_stack()
@@ -90,7 +97,7 @@ class BasePage(unittest.TestCase):
             # time.sleep(3)
             element.click()
             self.log.debug("Clicked on element with locator: " + locator + " locator_type: " + locator_type)
-        except:
+        except ElementNotVisibleException:
             self.log.debug("Cannot click on the element with locator: " + locator + " locator_type: " + locator_type)
             print(" could not click ")
             print_stack()
@@ -104,7 +111,7 @@ class BasePage(unittest.TestCase):
             else:
                 self.log.debug("Element not found")
                 return False
-        except:
+        except NoSuchElementException:
             self.log.debug("Element not found")
             return False
 
@@ -115,13 +122,13 @@ class BasePage(unittest.TestCase):
             by_type = self.getByType(locator_type)
             self.log.debug("Waiting for maximum :: " + str(timeout) +
                            " :: seconds for element to be clickable")
-            wait = WebDriverWait(self.driver, timeout, poll_frequency=poll_frequency,
+            wait = WebDriverWait(self._driver, timeout, poll_frequency=poll_frequency,
                                  ignored_exceptions=[NoSuchElementException,
                                                      ElementNotVisibleException,
                                                      ElementNotSelectableException])
             element = wait.until(expected_conditions.element_to_be_clickable((by_type, locator)))
             self.log.debug("Element appeared on the web page")
-        except:
+        except NoSuchElementException:
             self.log.debug("Element not appeared on the web page")
             print_stack()
         return element
