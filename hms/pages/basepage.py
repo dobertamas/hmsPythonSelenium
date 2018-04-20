@@ -23,6 +23,8 @@ class BasePage(unittest.TestCase):
     """
     log = custom_logger(logging.DEBUG)
 
+    # TODO move out base_url; specify it dynamically
+
     def __init__(self, selenium_driver, base_url='http://localhost:8084/console'):
         super().__init__()
         self._base_url = base_url
@@ -50,15 +52,15 @@ class BasePage(unittest.TestCase):
     Webdriver-related methods to be used in Page modules 
     """
 
-    def getElement(self, locator, locator_type):
+    def getElement(self, locator, strategy):
         element = None
         try:
-            locator_type = locator_type.lower()
-            by_type = self.getByType(locator_type)
+            strategy = strategy.lower()
+            by_type = self.getByType(strategy)
             element = self._driver.find_element(by_type, locator)
-            self.log.debug("Element Found with locator: " + locator + " and  locatorType: " + locator_type)
+            self.log.debug("Element Found with locator: " + locator + " and  strategy: " + strategy)
         except NoSuchElementException:
-            self.log.debug("Element not found with locator: " + locator + " and  locatorType: " + locator_type)
+            self.log.debug("Element not found with locator: " + locator + " and  strategy: " + strategy)
         return element
 
     def getByType(self, locator_type):
@@ -106,13 +108,13 @@ class BasePage(unittest.TestCase):
         try:
             element = self.getElement(locator, locator_type)
             if element is not None:
-                self.log.debug("Element Found")
+                self.log.debug("Element " + element.text + " was found")
                 return True
             else:
-                self.log.debug("Element not found")
+                self.log.debug("Element " + element.text + " was not found")
                 return False
         except NoSuchElementException:
-            self.log.debug("Element not found")
+            self.log.debug("Element was not found")
             return False
 
     def waitForElement(self, locator, locator_type="id",

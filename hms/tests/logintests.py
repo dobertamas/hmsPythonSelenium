@@ -17,23 +17,32 @@ class LoginTests(unittest.TestCase):
     """
     log = custom_logger(logging.DEBUG)
 
-    @staticmethod
-    def test_happy_path_login():
-        """
-        Tests login feature. Providing valid username and password enables user to log in.
-        """
+    """
+      Tests login feature. Providing valid username and password enables user to log in.
+      """
+
+    @classmethod
+    def setUpClass(cls):
         driver_object = DriverFactory()
-        driver = driver_object.get_web_driver("ff")
+        cls.driver = driver_object.get_web_driver("ff")
         # driver.maximize_window()
 
-        login_object = PageFactory.get_page_object("login", driver)
+    def test_happy_path_login(self):
 
-        if login_object.login():
+        login_page_object = PageFactory.get_page_object("login", self.driver)
+
+        # TODO use assertions
+
+        if login_page_object.login():
             msg = "Login was successful"
-            login_object.log.info(msg)
+            login_page_object.log.info(msg)
         else:
             msg = "Login failed"
-            login_object.log.info(msg)
+            login_page_object.log.info(msg)
 
         time.sleep(3)
-        login_object.verify_that_logged_in()
+        login_page_object.verify_that_logged_in()
+
+
+if __name__ == '__main__':
+    unittest.main()
