@@ -9,6 +9,9 @@ class LocalRecTeamMemberAdminPage(BasePage):
     log = custom_logger(logging.DEBUG)
 
     def start(self):
+        """
+        The start method also verifies the page title after getting the url.
+        """
         self.url = '/localRecTeamMember/userList'
         self.open(self.url)
         self.log.info("Starting the LocalRec TeamMember Admin page ")

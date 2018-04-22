@@ -20,6 +20,9 @@ class LoginPage(BasePage):
     log = custom_logger(logging.DEBUG)
 
     def start(self):
+        """
+        The start method also verifies the page title after getting the url.
+        """
         self.url = '/config/list'
         self.open(self.url)
         self.log.info("Starting the login page ")
@@ -33,7 +36,7 @@ class LoginPage(BasePage):
         password = file_reader.get_password()
         self.enterPassword(password.strip("\n"))
         self.clickLoginButton()
-        if 'HMS: Global Prefs' in self._driver.title:
+        if 'HMS' in self._driver.title:
             self.log.debug("Successful login ")
             return True
         else:

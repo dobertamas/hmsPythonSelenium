@@ -1,4 +1,4 @@
-from hms.pages.localrecteammemberadminpage import LocalRecTeamMemberAdminPage
+from hms.pages.teammemberadminpage import LocalRecTeamMemberAdminPage
 from hms.pages.loginpage import LoginPage
 from hms.pages.mainpage import MainPage
 from hms.utilities import config
