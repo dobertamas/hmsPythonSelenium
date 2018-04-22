@@ -28,18 +28,11 @@ class LoginTests(unittest.TestCase):
         # driver.maximize_window()
 
     def test_happy_path_login(self):
-
         login_page_object = PageFactory.get_page_object("login", self.driver)
 
-        # TODO use assertions
-
-        if login_page_object.login():
-            msg = "Login was successful"
-            login_page_object.log.info(msg)
-        else:
-            msg = "Login failed"
-            login_page_object.log.info(msg)
-
+        is_successful = login_page_object.login()
+        self.log.debug(" is_successful was: {} ".format(is_successful))
+        self.assertTrue(is_successful, "Login failed")
         time.sleep(3)
         login_page_object.verify_that_logged_in()
 

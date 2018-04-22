@@ -7,7 +7,6 @@ from hms.utilities.filereader import FileReader
 
 
 class LoginPage(BasePage):
-
     """
     Page Object Model for the HMS Admin login page.
     Attributes:
@@ -24,10 +23,10 @@ class LoginPage(BasePage):
     def login(self):
         file_reader = FileReader()
         username = file_reader.get_username()
-        self.enter_username(username)
+        self.enter_username(username.strip("\n"))
         file_reader = FileReader()
         password = file_reader.get_password()
-        self.enterPassword(password)
+        self.enterPassword(password.strip("\n"))
         self.clickLoginButton()
         if 'HMS: Global Prefs' in self._driver.title:
             self.log.debug("Successful login ")
@@ -48,7 +47,8 @@ class LoginPage(BasePage):
     def verify_that_logged_in(self):
         self.assertTrue(self.isElementPresent(MainPageLocators.ACTIVE_CLASS, "xpath"),
                         "We are not on the expected page")
-        self.assertTrue(self.isElementPresent(MainPageLocators.ACTIVE_CLASS_CONTAINS, "xpath"))
+        self.assertTrue(self.isElementPresent(MainPageLocators.ACTIVE_CLASS_CONTAINS, "xpath"),
+                        "We are not on the expected page")
 
     """
     To avoid the following when debugging through PyCharm:

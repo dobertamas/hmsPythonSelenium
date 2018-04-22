@@ -88,8 +88,7 @@ class BasePage(unittest.TestCase):
             element = self.getElement(locator, locator_type)
             element.send_keys(data)
             self.log.debug(
-                "Sent data on element with locator: {} and locatorType: {} and data: {}".format(locator, locator_type,
-                                                                                                data))
+                "Sent data {} with locator: {} and locatorType: {} ".format(data, locator, locator_type))
         except ElementNotVisibleException:
             self.log.debug("Cannot send data on the element with locator: " + locator +
                            " locatorType: " + locator_type)
