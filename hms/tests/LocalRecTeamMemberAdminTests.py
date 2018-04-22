@@ -13,11 +13,11 @@ class LocalRecTeamMemberAdminTests(unittest.TestCase):
     @classmethod
     def setUpClass(cls):
         driver_object = DriverFactory()
-        cls.driver = driver_object.get_web_driver("ff")
-
-    def test_happy_path_visit_teamMember_admin_page(self):
-        login_page = PageFactory.get_page_object("login", self.driver)
+        cls.driver = driver_object.get_web_driver("firefox")
+        login_page = PageFactory.get_page_object("login", cls.driver)
         login_page.login()
         time.sleep(3)
+
+    def test_happy_path_visit_teamMember_admin_page(self):
         team_member_admin_page = PageFactory.get_page_object("teammemberadmin", self.driver)
         team_member_admin_page.start()

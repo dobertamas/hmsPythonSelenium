@@ -1,6 +1,7 @@
 from hms.pages.localrecteammemberadminpage import LocalRecTeamMemberAdminPage
 from hms.pages.loginpage import LoginPage
 from hms.pages.mainpage import MainPage
+from hms.utilities import config
 
 
 class PageFactory:
@@ -11,9 +12,8 @@ class PageFactory:
     After obtaining a driver object, we call the Page_Factory class, which returns a required page object.
     """
 
-    # TODO move out base_url; specify it dynamically
     @staticmethod
-    def get_page_object(page_name, driver, base_url='http://localhost:8084/console/'):
+    def get_page_object(page_name, driver, base_url=config.LOCAL_TDOBER['BASE_URL']):
         """Return the appropriate page object based on page_name
         :rtype: BasePage
         """

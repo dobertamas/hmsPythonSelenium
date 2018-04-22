@@ -7,6 +7,7 @@ from selenium.webdriver.common.by import By
 from selenium.webdriver.support import expected_conditions
 from selenium.webdriver.support.wait import WebDriverWait
 
+from hms.utilities import config
 from hms.utilities.custom_logger import custom_logger
 
 
@@ -22,9 +23,7 @@ class BasePage(unittest.TestCase):
     """
     log = custom_logger(logging.DEBUG)
 
-    # TODO move out base_url; specify it dynamically
-
-    def __init__(self, selenium_driver, base_url='http://localhost:8084/console'):
+    def __init__(self, selenium_driver, base_url=config.LOCAL_TDOBER['BASE_URL']):
         super().__init__()
         self._base_url = base_url
         self._driver = selenium_driver
