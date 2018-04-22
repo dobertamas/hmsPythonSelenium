@@ -58,7 +58,7 @@ class BasePage(unittest.TestCase):
             strategy = strategy.lower()
             by_type = self.getByType(strategy)
             element = self._driver.find_element(by_type, locator)
-            self.log.debug("Element Found with locator: " + locator + " and  strategy: " + strategy)
+            self.log.debug("Element Found with locator: {} and  strategy: {}".format(locator, strategy))
         except NoSuchElementException:
             self.log.debug("Element not found with locator: " + locator + " and  strategy: " + strategy)
         return element
@@ -80,14 +80,16 @@ class BasePage(unittest.TestCase):
         elif locator_type == "tag":
             return By.TAG_NAME
         else:
-            self.log.debug("Locator type " + locator_type + " not correct/supported")
+            self.log.debug("Locator type {} not correct/supported".format(locator_type))
         return False
 
     def sendKeys(self, data, locator, locator_type="name"):
         try:
             element = self.getElement(locator, locator_type)
             element.send_keys(data)
-            self.log.debug("Sent data on element with locator: " + locator + " locatorType: " + locator_type)
+            self.log.debug(
+                "Sent data on element with locator: {} and locatorType: {} and data: {}".format(locator, locator_type,
+                                                                                                data))
         except ElementNotVisibleException:
             self.log.debug("Cannot send data on the element with locator: " + locator +
                            " locatorType: " + locator_type)
@@ -96,22 +98,21 @@ class BasePage(unittest.TestCase):
     def elementClick(self, locator, locator_type="name"):
         try:
             element = self.getElement(locator, locator_type)
-            # time.sleep(3)
             element.click()
-            self.log.debug("Clicked on element with locator: " + locator + " locator_type: " + locator_type)
+            self.log.debug("Clicked on element with locator: {} and locator_type: {} ".format(locator, locator_type))
         except ElementNotVisibleException:
-            self.log.debug("Cannot click on the element with locator: " + locator + " locator_type: " + locator_type)
-            print(" could not click ")
+            self.log.debug(
+                "Cannot click on the element with locator: {} and locator_type: {}".format(locator, locator_type))
             print_stack()
 
     def isElementPresent(self, locator, locator_type="id"):
         try:
             element = self.getElement(locator, locator_type)
             if element is not None:
-                self.log.debug("Element " + element.text + " was found")
+                self.log.debug("Element {} was found".format(element.text))
                 return True
             else:
-                self.log.debug("Element " + element.text + " was not found")
+                self.log.debug("Element for locator {} was not found".format(locator))
                 return False
         except NoSuchElementException:
             self.log.debug("Element was not found")
