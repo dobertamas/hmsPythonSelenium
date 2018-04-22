@@ -20,4 +20,4 @@ class LocalRecTeamMemberAdminTests(unittest.TestCase):
 
     def test_happy_path_visit_teamMember_admin_page(self):
         team_member_admin_page = PageFactory.get_page_object("teammemberadmin", self.driver)
-        team_member_admin_page.start()
+        team_member_admin_page.verify_table_first_column()
