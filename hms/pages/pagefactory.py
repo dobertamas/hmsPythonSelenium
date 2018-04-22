@@ -3,7 +3,12 @@ from hms.pages.mainpage import MainPage
 
 
 class PageFactory:
-    """ Returns the appropriate page object based on the name of the page """
+    """
+    Returns the appropriate page object based on the name of the page.
+    The browser type is determined by supplying short name like 'chrome' or 'ff' or 'firefox'.
+    The tests call the Driver_Factory class. Currently only local drivers are available.
+    After obtaining a driver object, we call the Page_Factory class, which returns a required page object.
+    """
 
     # TODO move out base_url; specify it dynamically
     @staticmethod

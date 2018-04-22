@@ -4,9 +4,13 @@ from selenium import webdriver
 class DriverFactory:
     """
     Class to create and return a Selenium webdriver.
-
     Attributes:
-        browser(str): The name of the browser. Currently it can be firefox or ff
+        browser(str): The name of the browser. Currently it can be firefox or ff.
+        browser_version (str): The version number of the browser. Currently unused.
+    Methods: run_local(browser): Depending on the browser type, different setup tests are required.
+        Please note that future versions of browsers might require an updated version of geckodriver,
+        which should be installed on the host before starting Selenium testing.
+
     """
 
     def __init__(self, browser='ff', browser_version=None):
@@ -27,9 +31,6 @@ class DriverFactory:
             # TODO set up chrome driver with webdriver
             # selenium.common.exceptions.SessionNotCreatedException: Message: Unable
             # to find a matching set of capabilities
-            # cap = {'binary_location': '/opt/geckodriver'}
-            # cap["marionette"] = False
-            # local_driver = webdriver.Chrome(desired_capabilities=cap, executable_path='/opt/geckodriver')
             local_driver = webdriver.Chrome('/opt/geckodriver')
         elif browser.lower() == "opera":
             # TODO maybe set up opera driver with webdriver
@@ -39,5 +40,4 @@ class DriverFactory:
             # TODO set up safari driver with webdriver
             # AttributeError: 'WebDriver' object has no attribute 'service'
             local_driver = webdriver.Safari()
-
         return local_driver

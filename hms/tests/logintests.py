@@ -8,18 +8,13 @@ from hms.utilities.custom_logger import custom_logger
 
 
 class LoginTests(unittest.TestCase):
-    """
-    Tests positive and negative scenarios for the login feature.
-    Verifications are about checking the title after login.
-    The browser type is determined by supplying short name like 'chrome' or 'ff' or 'firefox'.
-    The tests call the Driver_Factory class. Currently only local drivers are available.
-    After obtaining a driver object, we call the Page_Factory class, which returns a required page object.
-    """
     log = custom_logger(logging.DEBUG)
 
     """
-      Tests login feature. Providing valid username and password enables user to log in.
-      """
+    The browser type is determined by supplying short name like 'chrome' or 'ff' or 'firefox'.
+    The tests call the Driver_Factory class. Currently only local drivers are available.
+    After obtaining a driver object we call the Page_Factory class, which returns a Login page object. 
+    """
 
     @classmethod
     def setUpClass(cls):
@@ -28,6 +23,10 @@ class LoginTests(unittest.TestCase):
         # driver.maximize_window()
 
     def test_happy_path_login(self):
+        """
+        Positive test for the login feature. Providing valid username and password enables user to log in.
+        """
+
         login_page_object = PageFactory.get_page_object("login", self.driver)
 
         is_successful = login_page_object.login()

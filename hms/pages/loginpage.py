@@ -9,8 +9,13 @@ from hms.utilities.filereader import FileReader
 class LoginPage(BasePage):
     """
     Page Object Model for the HMS Admin login page.
-    Attributes:
-
+    Methods:
+        start: to visit the page this class is modeling, using the inherited (fom BasePage) open method
+        login: to perform the actual login. Returns True or False
+        enter_username
+        enterPassword
+        clickLoginButton
+        verify_that_logged_in: using xpath locators ut verifies that we are actually on the expected page
     """
     log = custom_logger(logging.DEBUG)
 

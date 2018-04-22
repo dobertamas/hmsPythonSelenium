@@ -17,7 +17,8 @@ class BasePage(unittest.TestCase):
         selenium_driver: allows you to drive the browser.
         base_url: The HMS Admin Console base URL unless passed in differently
     Methods:
-        start:
+        start: Page Object Model classes, extending BasePage, need to specify their own relative URL
+        open: invokes the driver's get method to visit the page in question
 
 
     """
@@ -32,19 +33,17 @@ class BasePage(unittest.TestCase):
         if self._driver is not None:
             self.start()
 
-    """ 
-    Overwrite this method in your Page module to visit the given page's URL.
-    Provide a relative URL there like '/config/list' 
-    """
-
     def start(self):
+        """
+        Overwrite this method in your Page module to visit the given page's URL.
+        Provide a relative URL there like '/config/list'
+        """
         pass
 
-    """ 
-    Provide a relative URL for this method in your Page module 
-    """
-
     def open(self, url):
+        """
+        Provide a relative URL for this method in your Page module
+        """
         url = self._base_url + url
         self._driver.get(url)
 
@@ -53,6 +52,11 @@ class BasePage(unittest.TestCase):
     """
 
     def getElement(self, locator, strategy):
+        """
+        Receives the locator type (with other words, strategy) like By.NAME and
+        uses the webdriver's find_element method. Returns the found WebElement. See doc at
+        https://seleniumhq.github.io/selenium/docs/api/py/webdriver_remote/selenium.webdriver.remote.webdriver.html?highlight=find_element#selenium.webdriver.remote.webdriver.WebDriver.find_element
+        """
         element = None
         try:
             strategy = strategy.lower()
@@ -64,6 +68,12 @@ class BasePage(unittest.TestCase):
         return element
 
     def getByType(self, locator_type):
+        """
+        Helper method to find the appropriate Selenium locator strategy like By.NAME. See doc at
+        https://seleniumhq.github.io/selenium/docs/api/py/webdriver/selenium.webdriver.common.by.html?highlight=by#selenium.webdriver.common.by
+        :param locator_type:
+        :return: selenium.webdriver.common.by
+        """
         locator_type = locator_type.lower()
         if locator_type == "id":
             return By.ID
