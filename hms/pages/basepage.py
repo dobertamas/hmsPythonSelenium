@@ -19,8 +19,6 @@ class BasePage(unittest.TestCase):
     Methods:
         start: Page Object Model classes, extending BasePage, need to specify their own relative URL
         open: invokes the driver's get method to visit the page in question
-
-
     """
     log = custom_logger(logging.DEBUG)
 
@@ -94,6 +92,12 @@ class BasePage(unittest.TestCase):
         return False
 
     def sendKeys(self, data, locator, locator_type="name"):
+        """
+        After locating the WebElement we want to send some data, like entering username
+        :param data: the actual data
+        :param locator: from the LoginPageLocators class, where they are grouped by page
+        :param locator_type: name or xpath or id etc.
+        """
         try:
             element = self.getElement(locator, locator_type)
             element.send_keys(data)
@@ -105,6 +109,11 @@ class BasePage(unittest.TestCase):
             print_stack()
 
     def elementClick(self, locator, locator_type="name"):
+        """
+        After locating a button we want to click on it
+        :param locator: from the LoginPageLocators class, where they are grouped by page
+        :param locator_type: name or xpath or id etc.
+        """
         try:
             element = self.getElement(locator, locator_type)
             element.click()
@@ -115,6 +124,12 @@ class BasePage(unittest.TestCase):
             print_stack()
 
     def isElementPresent(self, locator, locator_type="id"):
+        """
+        Verifying that webdriver can locate the element on the page
+        :param locator: from the LoginPageLocators class, where they are grouped by page
+        :param locator_type: name or xpath or id etc.
+        :return: True or False
+        """
         try:
             element = self.getElement(locator, locator_type)
             if element is not None:
@@ -127,8 +142,15 @@ class BasePage(unittest.TestCase):
             self.log.debug("Element was not found")
             return False
 
-    def waitForElement(self, locator, locator_type="id",
-                       timeout=10, poll_frequency=0.5):
+    def waitForElement(self, locator, locator_type="id", timeout=10, poll_frequency=0.5):
+        """
+        Method to perform intelligent waits. It tries to find the element with a specified frequency.
+        :param locator: from the LoginPageLocators class, where they are grouped by page
+        :param locator_type: name or xpath or id etc.
+        :param timeout: in seconds
+        :param poll_frequency: in seconds
+        :return: element
+        """
         element = None
         try:
             by_type = self.getByType(locator_type)
