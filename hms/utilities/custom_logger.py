@@ -12,7 +12,7 @@ def custom_logger(log_level=logging.DEBUG):
     file_handler = logging.FileHandler("automation.log", mode='a')
     file_handler.setLevel(log_level)
 
-    formatter = logging.Formatter('%(asctime)s - %(levelname)s - %(name)s - %(filename)s - %(funcName)s - %(lineno)d  - %(message)s',
+    formatter = logging.Formatter('%(asctime)s - %(levelname)s - %(name)s - %(filename)s - %(funcName)s - line %(lineno)d  - %(message)s',
                                   datefmt='%m/%d/%Y %I:%M:%S %p')
     file_handler.setFormatter(formatter)
     logger.addHandler(file_handler)

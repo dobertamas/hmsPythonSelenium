@@ -1,3 +1,4 @@
+from hms.pages.localrecteammemberadminpage import LocalRecTeamMemberAdminPage
 from hms.pages.loginpage import LoginPage
 from hms.pages.mainpage import MainPage
 
@@ -18,10 +19,11 @@ class PageFactory:
         """
 
         test_page_object = None
-        page_name = page_name.lower()
         if page_name == "login":
             test_page_object = LoginPage(driver, base_url=base_url)
         elif page_name == "main":
             test_page_object = MainPage(driver, base_url=base_url)
+        elif page_name == "teammemberadmin":
+            test_page_object = LocalRecTeamMemberAdminPage(driver, base_url=base_url)
 
         return test_page_object
