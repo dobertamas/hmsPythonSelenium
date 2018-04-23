@@ -11,3 +11,7 @@ class MainPageLocators:
 
 class LocalRecTeamMemberAdminPageLocators:
     TABLE_FIRST_COLUMN_USER_ID='//*[@id="dataTable"]/thead/tr[2]/th[1]'
+
+class HmsAppConfigPageLocators:
+    TABLE_FIRST_COLUMN_USER_ID = '//*[@id="dataTable"]/thead/tr[2]/th[1]'
+

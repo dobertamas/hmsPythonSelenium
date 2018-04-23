@@ -57,11 +57,3 @@ class LoginPage(BasePage):
                         "We are not on the expected page")
         self.assertTrue(self.isElementPresent(MainPageLocators.ACTIVE_CLASS_CONTAINS, "xpath"),
                         "We are not on the expected page")
-
-    """
-    To avoid the following when debugging through PyCharm:
-    Unable to get repr for <class 'hms.pages.login_page.Login_Page'>
-    """
-
-    def __repr__(self):
-        return "Login_Page"
