@@ -2,6 +2,7 @@ import logging
 
 from hms.pages.basepage import BasePage
 from hms.pages.locators import LocalRecTeamMemberAdminPageLocators
+from hms.utilities import config
 from hms.utilities.custom_logger import custom_logger
 
 
@@ -21,5 +22,5 @@ class LocalRecTeamMemberAdminPage(BasePage):
         self.isElementPresent(LocalRecTeamMemberAdminPageLocators.TABLE_FIRST_COLUMN_USER_ID, "xpath")
 
         element = self.getElement(LocalRecTeamMemberAdminPageLocators.TABLE_FIRST_COLUMN_USER_ID, "xpath")
-        self.assertEqual('FSQ User ID', element.text)
+        self.assertEqual(config.LOCAL_TDOBER['TEAM_MEMBER_ADMIN_FIRST_COLUMN_TEXT'].strip("\n"), element.text)
         return element.text

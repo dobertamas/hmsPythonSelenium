@@ -2,6 +2,7 @@ import logging
 
 from hms.pages.basepage import BasePage
 from hms.pages.locators import HmsAppConfigPageLocators
+from hms.utilities import config
 from hms.utilities.custom_logger import custom_logger
 
 
@@ -26,12 +27,12 @@ class HmsAppConfigPage(BasePage):
         self.isElementPresent(HmsAppConfigPageLocators.TABLE_FIRST_COLUMN_USER_ID, "xpath")
 
         element = self.getElement(HmsAppConfigPageLocators.TABLE_FIRST_COLUMN_USER_ID, "xpath")
-        self.assertEqual('ID', element.text)
+        self.assertEqual(config.LOCAL_TDOBER['TABLE_FIRST_COLUMN_TEXT'].strip("\n"), element.text)
         return element.text
 
     def verify_table_second_column(self):
         self.isElementPresent(HmsAppConfigPageLocators.TABLE_SECOND_COLUMN_USER_ID, "xpath")
 
         element = self.getElement(HmsAppConfigPageLocators.TABLE_SECOND_COLUMN_USER_ID, "xpath")
-        self.assertEqual('Key', element.text)
+        self.assertEqual(config.LOCAL_TDOBER['TABLE_SECOND_COLUMN_TEXT'].strip("\n"), element.text)
         return element.text
