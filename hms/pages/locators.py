@@ -16,3 +16,6 @@ class HmsAppConfigPageLocators:
     TABLE_FIRST_COLUMN_USER_ID = '//*[@id="dataTable"]/thead/tr[2]/th[1]'
     TABLE_SECOND_COLUMN_USER_ID = '//*[@id="dataTable"]/thead/tr[2]/th[2]'
 
+class FindMemberPageLocators:
+    MEMBER_ID_FIELD='memberId'
+    FETCH_BUTTON='//*[@id="crudform"]/div[2]/button'

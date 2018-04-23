@@ -7,9 +7,9 @@ from hms.pages.pagefactory import PageFactory
 from hms.utilities.custom_logger import custom_logger
 
 
-class HmsAppConfigTests(unittest.TestCase):
+class FindMemberPageTests(unittest.TestCase):
     """
-    Positive and negative tests for the HMS App Config page.
+    Positive and negative tests for the HMS Find Member page.
     """
     log = custom_logger(logging.DEBUG)
 
@@ -21,13 +21,14 @@ class HmsAppConfigTests(unittest.TestCase):
         login_page.login()
         time.sleep(3)
 
-    def test_happy_path_visit_hms_app_config_page(self):
+
+    def test_happy_path_visit_find_member_page(self):
         """
-        Visiting the HMS App Config page; then verifying all table column texts
+        Visiting the HMS Find Member page; then entering a valid member ID and clicking on Fetch button.
         """
-        hms_app_config_page = PageFactory.get_page_object("hmsappconfig", self.driver)
-        hms_app_config_page.verify_table_first_column()
-        hms_app_config_page.verify_table_second_column()
+        find_member_page = PageFactory.get_page_object("findmember", self.driver)
+        find_member_page.fetch_member()
+
 
     @classmethod
     def tearDownClass(cls):

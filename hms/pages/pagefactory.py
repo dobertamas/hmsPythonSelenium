@@ -1,7 +1,7 @@
+from hms.pages.findmemberpage import FindMemberPage
 from hms.pages.hmsappconfigpage import HmsAppConfigPage
-from hms.pages.teammemberadminpage import LocalRecTeamMemberAdminPage
 from hms.pages.loginpage import LoginPage
-from hms.pages.mainpage import MainPage
+from hms.pages.teammemberadminpage import LocalRecTeamMemberAdminPage
 from hms.utilities import config
 
 
@@ -22,11 +22,11 @@ class PageFactory:
         test_page_object = None
         if page_name == "login":
             test_page_object = LoginPage(driver, base_url=base_url)
-        elif page_name == "main":
-            test_page_object = MainPage(driver, base_url=base_url)
         elif page_name == "teammemberadmin":
             test_page_object = LocalRecTeamMemberAdminPage(driver, base_url=base_url)
         elif page_name == "hmsappconfig":
             test_page_object = HmsAppConfigPage(driver, base_url=base_url)
+        elif page_name == "findmember":
+            test_page_object = FindMemberPage(driver, base_url=base_url)
 
         return test_page_object

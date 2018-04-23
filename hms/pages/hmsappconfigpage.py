@@ -19,7 +19,7 @@ class HmsAppConfigPage(BasePage):
         """
         self.url = '/hmsappconfig/list'
         self.open(self.url)
-        self.log.info("Starting the login page ")
+        self.log.info("Starting the HMS App Config page ")
         self.assertIn("HMS: HMSAppConfig", self._driver.title)
 
     def verify_table_first_column(self):
