@@ -9,7 +9,6 @@ from hms.utilities.custom_logger import custom_logger
 
 class HmsAppConfigTests(unittest.TestCase):
     log = custom_logger(logging.DEBUG)
-
     """
     Positive and negative tests for the HMS App Config feature.
     """
@@ -22,12 +21,13 @@ class HmsAppConfigTests(unittest.TestCase):
         login_page.login()
         time.sleep(3)
 
-    def test_happy_path_visit_teamMember_admin_page(self):
+    def test_happy_path_visit_hms_app_config_page(self):
         """
         Visiting the HMS App Config page; then verifying all table column texts
         """
         hms_app_config_page = PageFactory.get_page_object("hmsappconfig", self.driver)
         hms_app_config_page.verify_table_first_column()
+        hms_app_config_page.verify_table_second_column()
 
     @classmethod
     def tearDownClass(cls):

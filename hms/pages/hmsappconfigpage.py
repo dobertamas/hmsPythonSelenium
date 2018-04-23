@@ -22,10 +22,16 @@ class HmsAppConfigPage(BasePage):
         self.log.info("Starting the login page ")
         self.assertIn("HMS: HMSAppConfig", self._driver.title)
 
-
     def verify_table_first_column(self):
         self.isElementPresent(HmsAppConfigPageLocators.TABLE_FIRST_COLUMN_USER_ID, "xpath")
 
         element = self.getElement(HmsAppConfigPageLocators.TABLE_FIRST_COLUMN_USER_ID, "xpath")
         self.assertEqual('ID', element.text)
+        return element.text
+
+    def verify_table_second_column(self):
+        self.isElementPresent(HmsAppConfigPageLocators.TABLE_SECOND_COLUMN_USER_ID, "xpath")
+
+        element = self.getElement(HmsAppConfigPageLocators.TABLE_SECOND_COLUMN_USER_ID, "xpath")
+        self.assertEqual('Key', element.text)
         return element.text
