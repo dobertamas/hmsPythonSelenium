@@ -24,7 +24,7 @@ class FindMemberPage(BasePage):
         self.assertIn("HMS: Find Member", self._driver.title)
 
     def fetch_member(self):
-        self.enter_member_id(config.LOCAL_TDOBER['FETCH_MEMBER_TEST_ID'].strip("\n"))
+        self.enter_member_id(config.LOCAL_TDOBER['FETCH_MEMBERID'].strip("\n"))
         self.click_fetch_button()
 
     def enter_member_id(self, member_id):

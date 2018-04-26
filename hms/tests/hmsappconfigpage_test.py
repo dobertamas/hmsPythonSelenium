@@ -2,7 +2,7 @@ import logging
 import time
 import unittest
 
-from hms.pages.driverfactory import DriverFactory
+from hms.pages.driver_factory import DriverFactory
 from hms.pages.pagefactory import PageFactory
 from hms.utilities.custom_logger import custom_logger
 

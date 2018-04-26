@@ -22,3 +22,7 @@ class HmsAppConfigPageLocators:
 class FindMemberPageLocators:
     MEMBER_ID_FIELD = 'memberId'
     FETCH_BUTTON = '//*[@id="crudform"]/div[2]/button'
+
+
+class MemberDetailPageLocators:
+    POINTS = '/html/body/div[1]/div[2]/div/div/table/tbody/tr[4]/td'

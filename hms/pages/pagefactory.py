@@ -1,6 +1,7 @@
 from hms.pages.findmemberpage import FindMemberPage
 from hms.pages.hmsappconfigpage import HmsAppConfigPage
 from hms.pages.loginpage import LoginPage
+from hms.pages.memberdetailpage import MemberDetailPage
 from hms.pages.teammemberadminpage import LocalRecTeamMemberAdminPage
 from hms.utilities import config
 
@@ -28,5 +29,17 @@ class PageFactory:
             test_page_object = HmsAppConfigPage(driver, base_url=base_url)
         elif page_name == "findmember":
             test_page_object = FindMemberPage(driver, base_url=base_url)
+        elif page_name == "memberdetail":
+            test_page_object = MemberDetailPage(driver, base_url=base_url, id=None, memberid=None)
+        return test_page_object
 
+    @staticmethod
+    def get_page_object_with_id_memberid(page_name, driver, id, memberid, base_url=config.LOCAL_TDOBER['BASE_URL']):
+        """Return the appropriate page object based on page_name
+        :rtype: BasePage
+        """
+
+        test_page_object = None
+        if page_name == "memberdetail":
+            test_page_object = MemberDetailPage(driver, id, memberid, base_url=base_url)
         return test_page_object

@@ -2,8 +2,9 @@ import logging
 import time
 import unittest
 
-from hms.pages.driverfactory import DriverFactory
+from hms.pages.driver_factory import DriverFactory
 from hms.pages.pagefactory import PageFactory
+from hms.utilities import config
 from hms.utilities.custom_logger import custom_logger
 
 
@@ -27,7 +28,12 @@ class FindMemberPageTests(unittest.TestCase):
         """
         find_member_page = PageFactory.get_page_object("findmember", self.driver)
         find_member_page.fetch_member()
-        # TODO: verify that ID=1488 on the member/detail?id=1488&memberId=000061043 page
+        time.sleep(3)
+        member_detail_page = PageFactory.get_page_object_with_id_memberid("memberdetail", self.driver,
+                                                                          config.LOCAL_TDOBER['FETCH_ID'].strip("\n"),
+                                                                          config.LOCAL_TDOBER['FETCH_MEMBERID'].strip(
+                                                                              "\n"))
+        print(member_detail_page.verify_points())
 
     @classmethod
     def tearDownClass(cls):

@@ -86,6 +86,10 @@ class BasePage(unittest.TestCase):
             return By.LINK_TEXT
         elif locator_type == "tag":
             return By.TAG_NAME
+        elif locator_type == "link text":
+            return By.LINK_TEXT
+        elif locator_type == "partial link text":
+            return By.PARTIAL_LINK_TEXT
         else:
             self.log.debug("Locator type {} not correct/supported".format(locator_type))
         return False
